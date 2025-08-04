@@ -25,7 +25,7 @@ class Admin::StocksController < AdminController
 
     respond_to do |format|
       if @admin_stock.save
-        format.html { redirect_to admin_product_stock_url( @product,@admin_stock), notice: "Stock was successfully created." }
+        format.html { redirect_to admin_product_stock_url(@product, @admin_stock), notice: "Stock was successfully created." }
         format.json { render :show, status: :created, location: @admin_stock }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,7 +36,6 @@ class Admin::StocksController < AdminController
 
   # PATCH/PUT /admin/stocks/1 or /admin/stocks/1.json
   def update
-
     respond_to do |format|
       if @admin_stock.update(admin_stock_params)
         format.html { redirect_to admin_product_stock_url(@admin_stock.product, @admin_stock), notice: "Stock was successfully updated." }

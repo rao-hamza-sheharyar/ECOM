@@ -49,7 +49,6 @@ class Admin::CategoriesController < AdminController
 
   # DELETE /admin/categories/1 or /admin/categories/1.json
   def destroy
-
     @admin_category.destroy!
 
     respond_to do |format|
@@ -66,6 +65,6 @@ class Admin::CategoriesController < AdminController
 
     # Only allow a list of trusted parameters through.
     def admin_category_params
-      params.require(:category).permit(:name, :description,:image)
+      params.require(:category).permit(:name, :description, :image)
     end
 end

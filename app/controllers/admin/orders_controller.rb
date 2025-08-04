@@ -4,7 +4,7 @@ class Admin::OrdersController < AdminController
   # GET /admin/orders or /admin/orders.json
   def index
     @full_fill_orders_pagy, @full_fill_orders = pagy(Order.where(fulfilled: true).order(created_at: :asc), page_param: :page_fullfiled)
-    @not_full_fill_orders_pagy , @not_full_fill_orders = pagy(Order.where(fulfilled: false).order(created_at: :asc))
+    @not_full_fill_orders_pagy, @not_full_fill_orders = pagy(Order.where(fulfilled: false).order(created_at: :asc))
   end
 
   # GET /admin/orders/1 or /admin/orders/1.json

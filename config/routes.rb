@@ -8,9 +8,9 @@
   end
 
 
-  resources :categories, only: [:show]
+  resources :categories, only: [ :show ]
 
-  resources :products, only: [:show]
+  resources :products, only: [ :show ]
 
 
   devise_for :admins
@@ -38,5 +38,4 @@
   get "success" => "checkouts#success"
   get "cancel" =>   "checkout#cancel"
   post "webhooks" => "webhooks#stripe"
-
 end
