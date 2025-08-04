@@ -1,0 +1,10 @@
+<%if @admin_order.order_products.any?%>
+<strong class="block font-medium mb-1">Produdct</strong>
+<% @admin_order.order_products.each do |op| %>
+<div class="border p-3 my-2">
+    <p><strong>Name:</strong> <%= op.product.name %></p>
+    <p><strong>Qty:</strong> <%= op.quantity %></p>
+    <p><strong>size:</strong> <%= op.size %></p>
+</div>
+<% end %>
+<%end%>
