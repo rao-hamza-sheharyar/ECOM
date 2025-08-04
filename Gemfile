@@ -66,3 +66,4 @@ gem "font-awesome-sass", "~> 6.5.1"
 
 
 gem "stripe", "~> 15.4"
+gem "aws-sdk-s3", require: false
