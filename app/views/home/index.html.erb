@@ -1,63 +1,286 @@
-<div class="bg-gray-800 text-white text-center py-20">
-    <h1 class="text-5xl font-bold mb-4">Welcome to Ecomm</h1>
-    <p class="text-xl mb-8">Your one-stop shop for all your e-commerce needs!</p>
-    <%= link_to "Shop Now", root_path, class: "bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" %>
-</div>
+<!-- Hero / Slideshow -->
+<!-- Hero / Slideshow (responsive height + better large-screen layout) -->
+<!-- Hero / Slideshow -->
+<div id="slideshow" data-controller="home" data-home-images-value='["<%= asset_path("image1.jpg") %>", "<%= asset_path("image2.jpg") %>"]' data-home-interval-value="2000" data-home-target="slideshow" class="relative w-full bg-cover bg-center md:bg-[position:center_30%] transition-all duration-1000 ease-in-out
+         min-h-[clamp(520px,80vh,900px)]" style="background-image: url(<%= asset_path('image1.jpg') %>)">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/30"></div>
 
-<div class="flex flex-wrap justify-center mt-8 items-center gap-10">
-    <% @main_catoegories.each do |category| %>
-    <%= link_to category_path(category) do %>
-    <div class="flex flex-col items-center mb-6 w-64 h-64">
-        <%= image_tag(category.image.present? ? category.image : "http://via.placeholder.com/512", class: "w-full h-full object-contain") %>
-        <h2 class="text-white font-medium text-lg text-center mt-4">
-            <%= category.name %>
-        </h2>
-    </div>
-    <% end %>
-    <% end %>
-</div>
-<div class="bg-gray-100 py-20 my-10">
-    <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Customer Testimonials</h2>
-        <div class="flex flex-wrap">
-            <div class="w-full md:w-1/3 px-2 mb-4">
-                <div class="bg-gray-100 rounded shadow py-4 px-4">
-                    <p class="text-gray-800 text-base mb-4">
-                        "I've been shopping on Ecomm for years, and it's always been a fantastic experience!"
-                    </p>
-                    <p class="text-gray-500 text-xs">
-                        - Jane Doe
-                    </p>
+    <!-- Content: Now vertically centered more -->
+    <div class="relative  inset-0 flex items-center justify-center px-4 sm:px-6 py-10">
+        <div class="flex mt-30 flex-col items-center w-full">
+
+            <!-- Red Box -->
+            <div class="w-full max-w-7xl mx-auto p-4 sm:p-6 md:p-10 bg-red-800/70 rounded-xl shadow-xl text-white text-center space-y-5 sm:space-y-7">
+                <!-- Tabs -->
+                <ul class="flex flex-wrap justify-center gap-2 sm:gap-3 text-sm sm:text-base md:text-lg font-semibold mb-4 sm:mb-6">
+                    <li>
+                        <button type="button" data-home-target="tab" data-action="click->home#activate" class="inline-block px-3 sm:px-5 py-2 rounded-t bg-white text-black">
+                            <i class="fas fa-plane mr-2"></i> FLIGHTS
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-home-target="tab" data-action="click->home#activate" class="inline-block px-3 sm:px-5 py-2 rounded-t bg-transparent text-white hover:bg-white/10">
+                            <i class="fas fa-bed mr-2"></i> HOTELS
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-home-target="tab" data-action="click->home#activate" class="inline-block px-3 sm:px-5 py-2 rounded-t bg-transparent text-white hover:bg-white/10">
+                            <i class="fas fa-suitcase mr-2"></i> HOLIDAYS
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-home-target="tab" data-action="click->home#activate" class="inline-block px-3 sm:px-5 py-2 rounded-t bg-transparent text-white hover:bg-white/10">
+                            <i class="fas fa-car mr-2"></i> CAR
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-home-target="tab" data-action="click->home#activate" class="inline-block px-3 sm:px-5 py-2 rounded-t bg-transparent text-white hover:bg-white/10">
+                            <i class="fas fa-ship mr-2"></i> CRUISE
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Search Form -->
+                <%= form_with url: "#", method: :get, local: true do %>
+                <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center items-stretch w-full">
+                    <%= text_field_tag :from, nil, placeholder: "Flying From",
+              class: "flex-1 min-w-[140px] px-4 py-3 rounded text-white bg-transparent border border-white placeholder-white" %>
+                    <%= text_field_tag :to, nil, placeholder: "Flying To",
+              class: "flex-1 min-w-[140px] px-4 py-3 rounded text-white bg-transparent border border-white placeholder-white" %>
+                    <%= date_field_tag :departure, nil,
+              class: "flex-1 min-w-[140px] px-4 py-3 rounded text-white bg-transparent border border-white placeholder-white" %>
+                    <%= date_field_tag :return, nil,
+              class: "flex-1 min-w-[140px] px-4 py-3 rounded text-white bg-transparent border border-white placeholder-white" %>
+                    <%= submit_tag "Search Flights",
+              class: "w-full sm:w-auto px-6 py-3 text-white bg-gradient-to-r from-red-400 via-red-700 to-red-800 hover:bg-gradient-to-br font-bold rounded-lg" %>
+                </div>
+                <% end %>
+            </div>
+
+            <!-- Top Deals -->
+            <div class="mt-8 w-full">
+                <h3 class="text-lg sm:text-2xl font-bold text-white mb-4 text-center">Top Deals</h3>
+                <div data-home-target="destinationList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-2">
+                    <!-- Cards injected by JS -->
                 </div>
             </div>
-            <div class="w-full md:w-1/3 px-2 mb-4">
-                <div class="bg-gray-100 rounded shadow py-4 px-4">
-                    <p class="text-gray-800 text-base mb-4">
-                        "I've been shopping on Ecomm for years, and it's always been a fantastic experience!"
-                    </p>
-                    <p class="text-gray-500 text-xs">
-                        - Jane Doe
-                    </p>
-                </div>
-            </div>
-            <div class="w-full md:w-1/3 px-2 mb-4">
-                <div class="bg-gray-100 rounded shadow py-4 px-4">
-                    <p class="text-gray-800 text-base mb-4">
-                        "I've been shopping on Ecomm for years, and it's always been a fantastic experience!"
-                    </p>
-                    <p class="text-gray-500 text-xs">
-                        - Jane Doe
-                    </p>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
-<div class="bg-gray-500 text-white my-10 text-center py-20">
-    <h2 class="text-3xl font-bold mb-6">Stay Updated</h2>
-    <p class="mb-8">Subscribe to our newsletter for the latest updates and offers.</p>
-    <%= form_with url: root_path, method: :post, local: true, class: "flex justify-center" do %>
-    <%= email_field_tag :email, nil, placeholder: "Enter your email", class: "p-2 rounded-l text-gray-800 bg-white" %>
-    <%= submit_tag "Subscribe", class: "bg-gray-700 hover:bg-gray-800 cursor-pointer text-white font-bold py-2 px-4 rounded-r" %>
-    <% end %>
+
+
+<!-- Welcome -->
+<section data-controller="scroll-animate" class="relative w-full py-10 sm:py-14 px-4 sm:px-6 overflow-hidden text-center bg-gradient-to-r from-yellow-400/90 via-yellow-500/90 to-yellow-600/90 text-black">
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-yellow-600/30 via-yellow-500/30 to-yellow-400/30"></div>
+    <div class="relative z-10 max-w-4xl mx-auto">
+        <h2 data-scroll-animate-target="card" class="opacity-0 text-2xl sm:text-4xl font-extrabold mb-4 uppercase tracking-wide">
+            Welcome to RR Travels
+        </h2>
+        <p data-scroll-animate-target="card" class="opacity-0 text-base sm:text-lg leading-relaxed">
+            Thank you for your stay at our web portal which serves as a one-stop solution for all your itinerary needs.
+            The team of <strong>RR Travels</strong> cordially welcomes you and thanks you for sparing your precious moments visiting our site.
+            Our team comprises of travel connoisseurs who specialize in providing itinerary solutions at very competitive rates.
+        </p>
+    </div>
+</section>
+
+<!-- Top Destinations (sliding bg) -->
+<div data-controller="grid" data-grid-images-value='["<%= asset_path("image1.jpg") %>", "<%= asset_path("image2.jpg") %>"]' data-grid-interval-value="3000" data-grid-target="background" class="relative bg-cover bg-center w-full min-h-[70vh] sm:min-h-[80vh] flex items-center justify-center" style="background-image: url(<%= asset_path("image1.jpg") %>); background-size: cover; background-position: center;">
+    <div class="absolute inset-0 bg-red-800/70"></div>
+    <div data-controller="hover hover-mobile scroll-animate" class="relative z-10 w-full max-w-6xl text-white px-4 py-10">
+        <div class="text-center mb-6 sm:mb-8">
+            <h2 class="text-2xl sm:text-3xl font-extrabold uppercase mb-2">OUR TOP DESTINATION</h2>
+            <p class="text-base sm:text-lg leading-relaxed">
+                At Reliance Travels, we aim to facilitate our customers with incomparable rates and flexible payment plans.
+                Contact us any time to learn more about fares to your preferred top destination.
+            </p>
+        </div>
+
+        <!-- Destination Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <% animation_classes = [
+        "animate__slideInLeft", "animate__slideInDown", "animate__slideInRight",
+        "animate__slideInUp", "animate__slideInDown", "animate__slideInLeft"
+      ] %>
+
+            <% destinations = [
+        { name: "Gambia", image: "BJL.jpg", description: "Explore the heart of West Africa." },
+        { name: "Nigeria", image: "LOS.jpg", description: "Visit vibrant Lagos and more." },
+        { name: "South Africa", image: "JNB.jpg", description: "Safari adventures and city life." },
+        { name: "Kenya", image: "NBO.jpg", description: "The land of nature and wildlife." },
+        { name: "Singapore", image: "SIN.jpg", description: "A modern marvel of Asia." },
+        { name: "Ghana", image: "ACC.jpg", description: "Rich history and golden beaches." }
+      ] %>
+
+            <% destinations.each_with_index do |d, i| %>
+            <div class="relative rounded-lg shadow-lg overflow-hidden opacity-0" data-scroll-animate-target="card" data-animate="<%= animation_classes[i] %>" data-index="<%= i %>" data-action="mouseenter->hover#show mouseleave->hover#hide click->hover-mobile#toggle">
+                <!-- Scaled heights per device (no fixed px) -->
+                <%= image_tag d[:image], class: "w-full h-48 sm:h-56 md:h-64 object-cover transition duration-300 ease-in-out group-hover:blur-sm" %>
+
+                <!-- Overlay -->
+                <div class="absolute inset-0 hidden flex-col items-center justify-center text-center text-white bg-black/40 px-4 space-y-3" data-hover-target="overlay" data-overlay-index="<%= i %>">
+                    <div>
+                        <div class="text-lg font-bold"><%= d[:name] %></div>
+                        <div class="text-sm"><%= d[:description] %></div>
+                    </div>
+                    <button class="px-4 sm:px-5 mt-6 py-1.5 sm:py-2 bg-yellow-400 text-black font-semibold rounded-full shadow-md animate__animated animate__bounce animate__infinite">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
 </div>
+
+<!-- Divider -->
+<div class="w-full h-[4px] border-t-2 border-yellow-400 bg-red-800"></div>
+
+<!-- Deals section (cards that re-animate on scroll) -->
+<div class="w-full bg-white flex flex-col items-center justify-center px-4 py-12">
+    <div class="max-w-7xl w-full text-center space-y-6">
+        <h2 class="text-2xl sm:text-4xl font-bold text-gray-800 uppercase">
+            Explore Our Best Flight Deals
+        </h2>
+        <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+            Find affordable fares with amazing comfort and flexible booking options. Our popular destinations are just a click away.
+        </p>
+
+        <!-- Use a grid that collapses cleanly on any phone -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+            <!-- Card template -->
+            <% deals = [
+        { title: "Port Louis Flight Deal", img: "BJL.jpg", price: "£1220" },
+        { title: "Johannesburg Flight Deal", img: "NBO.jpg", price: "£789" },
+        { title: "Nairobi Flight Deal", img: "NBO.jpg", price: "£699" },
+        { title: "Accra Flight Deal", img: "ACC.jpg", price: "£1234" },
+      ] %>
+
+            <% deals.each_with_index do |d, idx| %>
+            <div class="bg-white rounded-md shadow-md overflow-hidden border border-gray-200 anim-on-scroll" style="--animate-delay: <%= (idx * 150) %>ms;" data-anim="animate__fadeInDown">
+                <%= image_tag d[:img], class: "w-full h-40 sm:h-44 md:h-48 object-cover" %>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-sm mb-1"><%= d[:title] %></h3>
+                    <p class="text-yellow-500 text-sm">✈ From Heathrow</p>
+                    <p class="text-sm text-gray-500 mt-2">Starting From</p>
+                    <p class="text-2xl font-bold text-gray-800 mt-1"><%= d[:price] %><span class="text-sm">/Person</span></p>
+                    <p class="text-xs text-gray-500 mt-1">Return, Incl. Taxes</p>
+                </div>
+                <div class="px-4 pb-4">
+                    <button class="w-full sm:w-auto px-4 mt-3 py-1.5 text-sm bg-yellow-400 text-black font-semibold rounded-full shadow-md">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<!-- Divider -->
+<div class="w-full h-[4px] border-t-2 border-yellow-400 bg-red-800"></div>
+
+<!-- Why Choose Us (kept, with responsive spacing) -->
+<section class="relative w-full">
+    <div class="absolute inset-0">
+        <%= image_tag "image1.jpg", class: "w-full h-full object-cover" %>
+        <div class="absolute inset-0 bg-red-800/70"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 py-12 md:py-20 text-white">
+        <div class="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+            <h2 class="text-2xl md:text-4xl font-extrabold tracking-wider uppercase">Why Choose Us?</h2>
+            <p class="mt-2 text-xs sm:text-sm md:text-base tracking-widest opacity-90">Reasons to trust us</p>
+            <p class="mt-5 text-gray-200 leading-relaxed">
+                Our aim is to provide you with best services at unbeatable prices, which is why a wide range of passengers love to travel with us.
+                So just sit back, relax and let us make your travel arrangements because of these matchless reasons.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+            <% features = [
+        { icon: "fa-pound-sign", title: "Best Price Guarantee", text: "We offer the lowest prices with a full guarantee. Try us."},
+        { icon: "fa-credit-card", title: "Book Now & Pay Later", text: "Pay £50 as an initial payment and the rest later."},
+        { icon: "fa-thumbs-up",  title: "Excellent Services", text: "Thousands of satisfied clients trust our service."},
+        { icon: "fa-lock",       title: "Financial Protection", text: "Book with confidence; your bookings are protected."},
+      ] %>
+
+            <% features.each_with_index do |f, i| %>
+            <div class="relative">
+                <!-- Icon (falling) -->
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20 animate__animated animate__fadeInDown" style="animation-delay: <%= i * 120 %>ms;">
+                    <div class="w-12 h-12 bg-yellow-400 rotate-45 flex items-center justify-center shadow-md">
+                        <div class="-rotate-45 text-indigo-900 text-xl">
+                            <i class="fas <%= f[:icon] %>"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="relative z-10 bg-white text-gray-800 rounded-md shadow-lg px-6 pt-10 pb-6 text-center
+                      animate__animated animate__fadeInDown h-full min-h-[340px] sm:min-h-[360px] flex flex-col" style="animation-delay: <%= i * 120 %>ms;">
+                    <h3 class="font-extrabold text-sm tracking-wide mb-3"><%= f[:title] %></h3>
+                    <p class="text-[13px] leading-6 text-gray-600"><%= f[:text] %></p>
+                    <button class="mt-auto inline-block px-4 py-2 bg-yellow-400 text-black font-semibold rounded-sm">
+                        KNOW MORE
+                    </button>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="w-full h-[4px] border-t-2 border-yellow-400 bg-red-800"></div>
+
+<!-- Re-trigger Animate.css on scroll for .anim-on-scroll -->
+<script>
+    (function() {
+        const ENTER_T = 0.8,
+            EXIT_T = 0.0,
+            COOLDOWN_MS = 600;
+        const els = document.querySelectorAll(".anim-on-scroll");
+        const state = new WeakMap();
+        els.forEach(el => state.set(el, {
+            armed: true,
+            lastPlay: 0
+        }));
+
+        function play(el) {
+            const now = performance.now();
+            const s = state.get(el);
+            if (!s.armed || (now - s.lastPlay) < COOLDOWN_MS) return;
+            const anim = el.dataset.anim || "animate__fadeInDown";
+            el.classList.remove("animate__animated", anim);
+            void el.offsetWidth;
+            el.style.setProperty("--animate-duration", "0.9s");
+            el.classList.add("animate__animated", anim);
+            s.armed = false;
+            s.lastPlay = now;
+            state.set(el, s);
+            el.addEventListener("animationend", function onEnd() {
+                el.classList.remove("animate__animated", anim);
+                el.removeEventListener("animationend", onEnd);
+            });
+        }
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                const s = state.get(e.target);
+                if (!s) return;
+                if (e.intersectionRatio >= ENTER_T && s.armed) play(e.target);
+                if (e.intersectionRatio <= EXIT_T && !s.armed) {
+                    s.armed = true;
+                    state.set(e.target, s);
+                }
+            });
+        }, {
+            threshold: [EXIT_T, 0.25, 0.5, 0.8, 1]
+        });
+
+        els.forEach(el => io.observe(el));
+    })();
+</script>

@@ -1,61 +1,101 @@
-<footer class="bg-gray-800 text-white">
-    <div class="max-w-6xl mx-auto px-4 py-10 md:py-20">
-        <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-
-            <!-- About -->
-            <div class="space-y-8">
-                <h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">
-                    About Ecomm
-                </h3>
-                <p class="text-white leading-6">
-                    Ecomm is a leading online marketplace, offering a wide range of products to cater to all your needs. Our commitment to quality and customer service ensures a great shopping experience.
-                </p>
-            </div>
-
-            <!-- Quick Links -->
-            <div>
-                <h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">Quick Links</h3>
-                <ul class="mt-4 space-y-4">
-                    <li>
-                        <%= link_to "Home", root_path, class: "text-base leading-6 text-white hover:text-gray-100" %>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Contact -->
-            <div class="mb-4">
-                <h3 class="text-sm font-semibold tracking-wider uppercase text-gray-200">
-                    Contact
-                </h3>
-                <ul class="mt-4 space-y-4">
-                    <li>
-                        <p class="text-base leading-6 text-white">
-                            123 Ecom Lane <br>
-                            E-commerce City, EC 12345
-                        </p>
-                    </li>
-                    <li>
-                        <p class="text-base leading-6 text-white">
-                            Email: raohamza150@gmail.com
-                        </p>
-                    </li>
-                    <li>
-                        <p class="text-base leading-6 text-white">
-                            Phone: 07393887723
-                        </p>
-                    </li>
-                </ul>
-            </div>
-
+<footer class="w-full bg-white text-black">
+    <!-- Top -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 py-10">
+        <!-- Col 1 -->
+        <div>
+            <h3 class="font-bold text-lg mb-3">RRTravels Ltd.</h3>
+            <p class="text-sm leading-relaxed mb-4">
+                Providing a wide variety of travel products at unbeatable prices, with matchless services to all parts of the world.
+                We make the reservation process simple, fast, and hassle-free. Achieving customer satisfaction is our ultimate goal.
+            </p>
+            <button class="border border-yellow-400 px-4 py-2 text-sm font-semibold hover:bg-yellow-400 hover:text-black transition">
+                READ MORE
+            </button>
         </div>
 
+        <!-- Col 2 -->
+        <div>
+            <h3 class="font-bold text-lg mb-3">Newsletter</h3>
+            <p class="text-sm mb-3">Get the latest flight deals directly in your inbox.</p>
 
-        <div class="border-t border-gray-700">
-            <div class="max-w-6xl mx-auto px-4 py-6 md:flex md:items-center md:justify-between">
-                <p class="mt-6 text-base leading-6 text-gray-400 md:mt-0 md:order-1">
-                    &copy; <%= Time.now.year %> Ecomm, Inc. All rights reserved.
-                </p>
+            <%= form_with url: root_path, method: :post, local: true, class: "space-y-2" do |f| %>
+            <%= f.email_field :email, placeholder: "Enter Your Email",
+      class: "w-full rounded-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
 
+            <p class="text-xs">* We respect your privacy and do not send spam.</p>
+
+            <%= f.button type: "submit", class: "px-6 py-3 text-white bg-gradient-to-r from-red-400 via-red-700 to-red-800 hover:bg-gradient-to-br font-bold rounded-lg text-base sm:text-lg flex items-center justify-center" do %>
+            <i class="fas fa-paper-plane mr-1"></i> SUBSCRIBE
+            <% end %>
+            <% end %>
+        </div>
+
+        <!-- Col 3 -->
+        <div>
+            <h3 class="font-bold text-lg mb-3">Contact Us</h3>
+            <ul class="space-y-3 text-sm">
+                <li class="flex items-center gap-3">
+                    <i class="fas fa-phone text-yellow-400"></i>
+                    <span>0207 993 6068</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <i class="fab fa-whatsapp text-yellow-400"></i>
+                    <span>0207 993 5374</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <i class="fas fa-envelope text-yellow-400"></i>
+                    <span>info@rrtravels.co.uk</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Yellow bar: logos left, socials right (responsive) -->
+    <div class="bg-yellow-400 py-2">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
+            <!-- Payment logos (wrap & scroll on small so it never overflows) -->
+            <div class="w-full md:w-auto overflow-x-auto">
+                <div class="flex items-center gap-3 min-w-max">
+                    <%= image_tag "footor/visa.png",          class: "h-6 w-auto", alt: "Visa" %>
+                    <%= image_tag "footor/master.png",        class: "h-6 w-auto", alt: "MasterCard" %>
+                    <%= image_tag "footor/delta.png",         class: "h-6 w-auto", alt: "Delta" %>
+                    <%= image_tag "footor/mastro.png",        class: "h-6 w-auto", alt: "Maestro" %>
+                    <%= image_tag "footor/visaelectron.png",  class: "h-6 w-auto", alt: "Visa Electron" %>
+                    <%= image_tag "footor/baclays-power.png", class: "h-6 w-auto", alt: "Powered by Barclaycard" %>
+                </div>
+            </div>
+
+            <!-- Socials (brand colors, link_to) -->
+            <div class="flex items-center justify-center md:justify-end gap-2">
+                <%= link_to "#", class: "w-9 h-9 rounded-full grid place-items-center text-white",
+                      title: "Facebook", aria: { label: "Facebook" },
+                      style: "background-color:#1877F2" do %>
+                <i class="fab fa-facebook-f text-sm"></i>
+                <% end %>
+
+                <%= link_to "#", class: "w-9 h-9 rounded-full grid place-items-center text-white",
+                      title: "Twitter", aria: { label: "Twitter" },
+                      style: "background-color:#1DA1F2" do %>
+                <i class="fab fa-twitter text-sm"></i>
+                <% end %>
+
+                <%= link_to "#", class: "w-9 h-9 rounded-full grid place-items-center text-white",
+                      title: "YouTube", aria: { label: "YouTube" },
+                      style: "background-color:#FF0000" do %>
+                <i class="fab fa-youtube text-sm"></i>
+                <% end %>
+
+                <%= link_to "#", class: "w-9 h-9 rounded-full grid place-items-center text-white",
+                      title: "Google", aria: { label: "Google" },
+                      style: "background-color:#DB4437" do %>
+                <i class="fab fa-google text-sm"></i>
+                <% end %>
+
+                <%= link_to "#", class: "w-9 h-9 rounded-full grid place-items-center text-white",
+                      title: "Instagram", aria: { label: "Instagram" },
+                      style: "background-color:#E4405F" do %>
+                <i class="fab fa-instagram text-sm"></i>
+                <% end %>
             </div>
         </div>
     </div>

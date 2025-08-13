@@ -1,31 +1,50 @@
-<nav class="fixed w-full top-0 bg-gray-100 z-10 py-4">
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div class="relative flex items-center justify-between h-16">
-            <div class="flex-1 flex items-center justify-between sm:items-stretch sm:justify-between">
-                <div class="hidden sm:flex items-center justify-center">
-                    <div class="flex space-x-10">
-                        <%= link_to 'Shop', root_path, class: 'text-gray-500 hover:underline py-2 rounded-md text-md font-medium' %>
-                    </div>
-                </div>
+<nav data-controller="navbar" class="fixed top-0 left-0 w-full z-50 shadow">
+    <!-- Top header row -->
+    <div data-navbar-target="topbar" class="bg-white border-gray-200 max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3 md:py-2 transition-all duration-300 overflow-hidden">
+        <div class="flex items-center space-x-2">
+            <%= link_to root_path, class: "flex items-center space-x-2" do %>
+            <%= image_tag 'logo.jpg', alt: 'Logo', class: 'object-contain', style: "height: 50px; width: auto;" %>
+            <%= image_tag 'trip.gif', alt: 'Trip', class: 'object-contain', style: "height: 60px; width: auto;" %>
+            <% end %>
+        </div>
 
-                <div class="flex-shrink-0 flex items-center">
-                    <%= link_to root_path do %>
-                    <%= image_tag 'logo.png', class: 'block lg:hidden h-20 w-auto' %>
+        <div class="hidden md:flex items-center space-x-4">
+            <%= image_tag 'trustpilotstar.jpg', alt: 'Trustpilot', class: 'object-contain', style: "height: 50px; width: auto;" %>
+            <%= link_to 'My Trips', '#', class: "text-decoration-none text-white bg-gradient-to-r from-red-400 via-red-700 to-red-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" %>
+        </div>
+
+        <div class="hidden md:block bg-red-800 text-white px-4 py-2 rounded-sm text-right text-xs leading-snug">
+            <div class="font-semibold text-[15px]">For Information & Booking Call Now</div>
+            <div class="text-xl font-bold tracking-wide">📞 0207 078 8885</div>
+        </div>
+
+        <!-- Mobile toggle button -->
+        <button type="button" data-action="click->navbar#toggle" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-red-700 hover:text-red-500 rounded-lg md:hidden">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Red menu bar -->
+    <div data-navbar-target="redbar" class="bg-red-800 border-b border-white transition-all duration-300">
+        <div class="max-w-screen-xl mx-auto">
+            <div data-navbar-target="menu" class="hidden md:block w-full">
+                <ul class="flex flex-col md:flex-row md:justify-center items-center md:h-10 text-center font-bold">
+                    <% menu_items = ["HOME", "CHEAP FLIGHTS", "BUSINESS CLASS", "WHY BOOK WITH US", "BOOKING CONDITION", "FAQ'S", "ABOUT US", "CONTACT US"] %>
+                    <% menu_items.each do |item| %>
+                    <li class="md:h-full flex items-center">
+                        <%= link_to item, root_path,
+                                class: "text-decoration-none mt-3 text-white font-medium text-[20px] px-3 py-1 hover:bg-yellow-400 hover:text-black whitespace-nowrap transition-colors duration-300",
+                                tabindex: 0 %>
+                    </li>
                     <% end %>
-
-                    <%= link_to root_path do %>
-                    <%= image_tag 'logo.png', class: 'hidden lg:block h-20 w-auto' %>
-                    <% end %>
-                </div>
-
-                <div class="hidden sm:flex sm:ml-6 items-center justify-center">
-                    <div class="flex space-x-10">
-                        <%= link_to cart_path, class: 'text-gray-500 hover:underline py-2 rounded-md text-md font-medium' do %>
-                        <%= icon 'fa-solid', 'shopping-cart' %>
-                        <% end %>
-                    </div>
-                </div>
+                </ul>
             </div>
         </div>
     </div>
 </nav>
+
+<!-- Spacer -->
+<div id="header-spacer"></div>

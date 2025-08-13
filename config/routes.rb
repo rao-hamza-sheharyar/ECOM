@@ -5,6 +5,7 @@
       resources :stocks
     end
     resources :categories
+    resources :flights
   end
 
 

@@ -1,0 +1,47 @@
+<%= form_with(model:[:admin, admin_flight], class: "contents") do |form| %>
+<% if admin_flight.errors.any? %>
+<div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+    <h2><%= pluralize(admin_flight.errors.count, "error") %> prohibited this admin_flight from being saved:</h2>
+
+    <ul class="list-disc ml-6">
+        <% admin_flight.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="my-5">
+    <%= form.label :airline %>
+    <%= form.text_field :airline, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": admin_flight.errors[:airline].none?, "border-red-400 focus:outline-red-600": admin_flight.errors[:airline].any?}] %>
+</div>
+
+<div class="my-5">
+    <%= form.label :origin %>
+    <%= form.text_field :origin, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": admin_flight.errors[:origin].none?, "border-red-400 focus:outline-red-600": admin_flight.errors[:origin].any?}] %>
+</div>
+
+<div class="my-5">
+    <%= form.label :destination %>
+    <%= form.text_field :destination, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": admin_flight.errors[:destination].none?, "border-red-400 focus:outline-red-600": admin_flight.errors[:destination].any?}] %>
+</div>
+
+<div class="my-5">
+    <%= form.label :departure_date %>
+    <%= form.date_field :departure_date, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": admin_flight.errors[:departure_date].none?, "border-red-400 focus:outline-red-600": admin_flight.errors[:departure_date].any?}] %>
+</div>
+
+<div class="my-5">
+    <%= form.label :arrival_date %>
+    <%= form.date_field :arrival_date, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": admin_flight.errors[:arrival_date].none?, "border-red-400 focus:outline-red-600": admin_flight.errors[:arrival_date].any?}] %>
+</div>
+
+<div class="my-5">
+    <%= form.label :price %>
+    <%= form.text_field :price, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": admin_flight.errors[:price].none?, "border-red-400 focus:outline-red-600": admin_flight.errors[:price].any?}] %>
+</div>
+
+<div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+</div>
+<% end %>
