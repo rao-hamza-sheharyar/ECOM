@@ -32,7 +32,7 @@ class CheckoutsController < ApplicationController
     session = Stripe::Checkout::Session.create(
       mode: "payment",
       line_items: line_items,
-      success_url: "http://localhost:3000/success",
+      success_url: "https://ecom-4ziq.onrender.com/success",
       cancel_url: "http://localhost:3000/cancel",
       shipping_address_collection: {
         allowed_countries: [ "US", "CA" ]
