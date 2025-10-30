@@ -65,5 +65,5 @@ gem "devise", "~> 4.9"
 gem "font-awesome-sass", "~> 6.5.1"
 
 
-gem "stripe", "~> 15.4"
+gem "stripe", "~> 17.1"
 gem "aws-sdk-s3", require: false
